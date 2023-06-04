@@ -6,12 +6,18 @@ class Animal(models.Model):
     """
     nombre = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.nombre
+
 class Categoria(models.Model):
     """
     Modelo que representa las cateogrias de los productos que se venden en la tienda
     """
     nombre = models.CharField(max_length=50)
     ref_animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombre
 
 class EstadoProducto(models.Model):
     """
