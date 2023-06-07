@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>crearProducto</title>
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-3" id="title">Nuevo Producto</h1>
+<p>Ingrese los datos del nuevo producto</p>
+<div class="container formulario">
+    <form method="POST" enctype="multipart/form-data">
+ 
+        <!-- Security token -->
+        {% csrf_token %}
+     
+        <!-- Using the formset -->
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+         
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a type="button" class="btn btn-danger" href="{% url 'gestionProductos' %}">Cancelar</a>
+    </form>   
+</div>
+
+
+{% endblock content%}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Gestion</title>
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-2" id="title">Gestión</h1>
+<p>En este menú se pueden gestionar los productos ofrecidos en la tiena en linea</p>
+<a type="button" class="btn btn-success" href="{% url 'crearProductos' %}">Crear Producto</a>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Fecha Creación</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for producto in page_obj %}
+      <tr>
+        <th scope="row">{{ producto.id }}</th>
+        <td>{{ producto.nombre|upper }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.fecha_creacion }}</td>
+        <td><a type="button-sm" class="btn btn-sm btn-primary" href="{% url 'editarProductos' producto.id %}">Editar</a>
+            <a type="button-sm" class="btn btn-sm btn-danger" href="{% url 'eliminarProductos' producto.id %}">Borrar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock content%}

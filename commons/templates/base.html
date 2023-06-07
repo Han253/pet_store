@@ -7,54 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Incluir Bootstrap style en el todas las templates que heredan de esta base-->
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static '/css/base.css' %}" >
     <!--bloque para definir el título de la pagina web especifica y hacer los import adicionales necesarios-->
     {% block extrahead %}   
     {% endblock extrahead%}
 </head>
 <body>
     <!--Insertando Navbar de Bootstrap-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">UisMascotas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Productos</a>
+            </li>        
+            <li class="nav-item">
+              <a class="nav-link" href="#">Gestión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 left_bar">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Carrito</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                <a class="nav-link dropdown-toggle i" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Mi Cuenta
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="#">Salir</a></li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            </ul>            
+          </form>
         </div>
-      </nav>
+      </div>
+    </nav>
     <!--Contenido de la página web-->
-    <div class="container-fluid content">
+    <div class="container content" id="cont_body">
         {% block content %}
         {% endblock content%}
     </div>
+    <div class="container-fluid">
+      <footer class="my-4">
+        <ul class="nav justify-content-center border-bottom mb-3">
+          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-body-secondary">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Productos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Gestión</a></li>
+          <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link px-2 text-body-secondary">Administración</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2023 Company, Inc</p>
+      </footer>
+    </div>
+    {% block extrajs %}
+    {% endblock extrajs%}
     <!--Incluir Bootstrap code en el todas las templates que heredan de esta base-->
-    <link rel="stylesheet" href="{% static '/js/bootstrap.bundle.min.js' %}" >
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}" ></script>
 </body>
 </html>

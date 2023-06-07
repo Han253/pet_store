@@ -59,7 +59,7 @@ ROOT_URLCONF = 'pets_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'commons/templates')],
+        'DIRS': [os.path.join(BASE_DIR,'commons/templates'),os.path.join(BASE_DIR,'productos/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,6 +125,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+# config/settings.py
+MEDIA_URL = "/archivos/"
+MEDIA_ROOT = BASE_DIR / "archivos"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

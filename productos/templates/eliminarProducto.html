@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>eliminarProducto</title>
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-3" id="title">Eliminar Producto</h1>
+<p>Elimine los datos del producto</p>
+<form method="POST">
+    <!-- Security token by Django -->
+    {% csrf_token %}
+    Esta seguro de eliminar este producto?
+    <input type="submit" value="Si"  class="btn btn-success"  />
+    <a href="{% url 'gestionProductos' %}"  class="btn btn-danger" >Cancel </a>
+</form> 
+
+
+{% endblock content%}

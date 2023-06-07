@@ -26,6 +26,9 @@ class EstadoProducto(models.Model):
     """
     estado = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.estado
+
 class Producto(models.Model):
     """
     Modelo que representa los productos que son vendidos en la tienda, 
@@ -39,6 +42,6 @@ class Producto(models.Model):
     caracteristicas = models.CharField(max_length=400)
     precio = models.IntegerField()
     fecha_creacion = models.DateTimeField()
-    imagen = models.FileField(upload_to="imagenes_productos/")
+    imagen = models.FileField(upload_to="productos/")
 
 

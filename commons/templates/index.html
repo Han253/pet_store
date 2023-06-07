@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block extrahead %} 
-<title>home</title>
+<title>Inicio</title>
+<link rel="stylesheet" href="{% static '/css/index.css' %}" >
 {% endblock extrahead%}
 
 {% block content %} 
-<h1>Página principal</h1>
+<h1 class="display-2 text-center" id="title">UIS MASCOTAS</h1>
+<img src="{% static '/img/index/intro.jpg' %}" class="img-fluid rounded mx-auto d-block" id="img_index" alt="Error cargando Imagen">
+<figure class="text-center">
+    <blockquote class="blockquote">
+      <p class="text_responsive">Descubre un mundo de cuidado y felicidad para tus mascotas en UisMascotas. Encuentra todo lo que necesitas para el bienestar de tus adorables compañeros peludos: alimentos nutritivos, juguetes divertidos, camas cómodas y mucho más. ¡Mejora la vida de tus mascotas con productos de calidad en nuestra tienda en línea! Bienvenido a UisMascotas, donde el amor por las mascotas es nuestra pasión.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Equipo UISMASCOTAS</cite>
+    </figcaption>
+  </figure>
 {% endblock content%}

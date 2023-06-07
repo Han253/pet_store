@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Productos</title>
+<link rel="stylesheet" href="{% static '/css/productos.css' %}" >
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-2" id="title">Productos</h1>
+<p>Explora nuestra amplia gama de productos diseñados pensando en el bienestar y felicidad de tus mascotas. Desde alimentos saludables hasta juguetes interactivos y accesorios cómodos, encontrarás todo lo necesario para cuidar y consentir a tus compañeros peludos. En UisMascotas, cada producto está cuidadosamente seleccionado para brindar calidad y satisfacción a tus mascotas. ¡Descubre lo mejor para ellos en nuestra sección de productos!</p>
+<div class="container text-center">
+    <div class="row">
+      {% for producto in page_obj %}
+      <div class="col col-sm">
+        <div class="card">
+            <img src="{{ producto.imagen.url }}" class="card-img-top imagen_tarjeta" alt="Sin Imágen">
+            <span class="badge rounded-pill text-bg-info estado_label">{{ producto.ref_estado.estado }}</span>
+            <div class="card-body">
+              <h5 class="card-title">{{ producto.nombre|upper }}</h5>
+              <p class="card-text">{{ producto.descripcion }}</p>
+              
+              <a href="#" class="btn btn-success">Comprar</a>
+              <a href="{% url 'detalleProducto' producto.id %}" class="btn btn-primary">Detalles</a>
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+    </div> 
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>   
+    
+  </div>
+{% endblock content%}
+
+{% block extrajs %} 
+{% endblock extrajs%}

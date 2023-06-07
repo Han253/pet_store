@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Detalle</title>
+<link rel="stylesheet" href="{% static '/css/detalle.css' %}" >
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-4" id="title">Detalle Producto</h1>
+<a type="button" class="btn btn-success" href="{% url 'productosIndex' %}">Volver</a>
+
+<div class="row">
+    <div class="col col-sm">
+        <img src="{{ producto.imagen.url }}" class="img-fluid rounded mx-auto d-block imagen_producto" alt="Sin Imágen">
+    </div>
+    <div class="col col-sm">
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">ID</th>
+                <td>{{ producto.id }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Nombre</th>
+                <td>{{ producto.nombre }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Descripción</th>
+                <td>{{ producto.descripcion }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Caracteristicas</th>
+                <td>{{ producto.descripcion }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Precio</th>
+                <td>{{ producto.descripcion }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Estado</th>
+                <td>{{ producto.ref_estado.estado }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Categoria</th>
+                <td>{{ producto.ref_categoria.nombre }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Mascota</th>
+                <td>{{ producto.ref_categoria.ref_animal.nombre }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+
+</div>
+
+{% endblock content%}
