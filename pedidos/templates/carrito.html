@@ -15,9 +15,16 @@
     </div>	
 	{% endfor %}
 {% endif %}
-<a class="btn btn-success">Procesar Pedido</a>
-
 {% if pedido %}
+<form method="POST">
+    {% csrf_token %}            
+    <input class="form-control d-none" id="procesar" name="procesar" type="number" value="1">
+    <br>
+    <input type="submit" class="btn btn-success" value="Procesar Pedido">
+</form>
+<br><br>
+
+<h4 class="display-4">Total Pedido ${{ valorPedido }}</h4>
 <table class="table">
     <thead>
       <tr>
@@ -35,12 +42,14 @@
         <td>{{producto_pedido.valor}}</td>
         <td>
             <a class="btn btn-sm btn-warning" href="{% url 'agregarProducto' producto_pedido.producto.id %}">Editar</a>
-            <a class="btn btn-sm btn-danger">Borrar</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'borrarProducto' producto_pedido.producto.id %}">Borrar</a>
         </td>
       </tr>
       {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>No se encontraron productos en el carrito <a href="{% url 'productosIndex' %}">seguir comprando</a></p>
 {% endif %}
 
 

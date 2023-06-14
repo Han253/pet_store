@@ -47,7 +47,7 @@
           <form class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 left_bar">
               <li class="nav-item">
-                <a class="nav-link" href="#">Carrito</a>
+                <a class="nav-link" href="{% url 'carritoCompras' %}">Carrito</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
                   Mi Cuenta
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Perfil</a></li>
+                  <li><a class="dropdown-item" href="{% url 'pedidos' %}">Mis pedidos</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                 </ul>

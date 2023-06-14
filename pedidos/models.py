@@ -21,7 +21,7 @@ class Pedido(models.Model):
     ref_estado = models.ForeignKey(EstadoPedido, on_delete=models.DO_NOTHING)
     ref_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField(auto_now=True)
-    valor_pedido = models.IntegerField()
+    valor_pedido = models.BigIntegerField()
     productos = models.ManyToManyField(Producto, through="PedidoProducto")
 
     def __str__(self):
@@ -37,5 +37,5 @@ class PedidoProducto(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
-    valor = models.IntegerField()
+    valor = models.BigIntegerField()
 
