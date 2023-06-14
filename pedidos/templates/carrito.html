@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Carrito</title>
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-4" id="title">Carrito Compras</h1>
+<p>Carrito compras productos</p>
+{% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
+<a class="btn btn-success">Procesar Pedido</a>
+
+{% if pedido %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for producto_pedido in productosPedido %}
+      <tr>
+        <td>{{producto_pedido.producto.nombre}}</td>
+        <td>{{producto_pedido.cantidad}}</td>
+        <td>{{producto_pedido.valor}}</td>
+        <td>
+            <a class="btn btn-sm btn-warning" href="{% url 'agregarProducto' producto_pedido.producto.id %}">Editar</a>
+            <a class="btn btn-sm btn-danger">Borrar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
+{% endblock content%}

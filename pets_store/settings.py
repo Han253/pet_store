@@ -59,7 +59,11 @@ ROOT_URLCONF = 'pets_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'commons/templates'),os.path.join(BASE_DIR,'productos/templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR,'commons/templates'),
+            os.path.join(BASE_DIR,'productos/templates'),
+            os.path.join(BASE_DIR,'pedidos/templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -8,6 +8,13 @@
 
 {% block content %} 
 <h1 class="display-2" id="title">Productos</h1>
+{% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
 <p>Explora nuestra amplia gama de productos diseñados pensando en el bienestar y felicidad de tus mascotas. Desde alimentos saludables hasta juguetes interactivos y accesorios cómodos, encontrarás todo lo necesario para cuidar y consentir a tus compañeros peludos. En UisMascotas, cada producto está cuidadosamente seleccionado para brindar calidad y satisfacción a tus mascotas. ¡Descubre lo mejor para ellos en nuestra sección de productos!</p>
 <div class="container text-center">
     <div class="row">
@@ -20,7 +27,7 @@
               <h5 class="card-title">{{ producto.nombre|upper }}</h5>
               <p class="card-text">{{ producto.descripcion }}</p>
               
-              <a href="#" class="btn btn-success">Comprar</a>
+              <a href="{% url 'agregarProducto' producto.id %}" class="btn btn-success">Comprar</a>
               <a href="{% url 'detalleProducto' producto.id %}" class="btn btn-primary">Detalles</a>
             </div>
           </div>

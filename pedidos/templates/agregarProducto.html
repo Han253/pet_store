@@ -2,15 +2,27 @@
 {% load static %}
 
 {% block extrahead %} 
-<title>Detalle</title>
+<title>Agregar</title>
 <link rel="stylesheet" href="{% static '/css/detalle.css' %}" >
 {% endblock extrahead%}
 
 {% block content %} 
-<h1 class="display-4" id="title">Detalle Producto</h1>
+<h1 class="display-4" id="title">Agregar Producto</h1>
+<p>Agregar producto a carrito de compras</p>
 <a type="button" class="btn btn-success" href="{% url 'productosIndex' %}">Volver</a>
 
 <div class="row">
+    <div class="col col-sm">
+        <br>
+        <h3>Agregar a Carrito:</h3>
+        <form method="POST">
+            {% csrf_token %}            
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input class="form-control" id="cantidad" name="cantidad" type="number" value="1">
+            <br>
+            <input type="submit" class="btn btn-warning" value="Agregar Carrito">
+        </form>
+    </div>
     <div class="col col-sm">
         <img src="{{ producto.imagen.url }}" class="img-fluid rounded mx-auto d-block imagen_producto" alt="Sin Imágen">
     </div>
@@ -31,11 +43,11 @@
               </tr>
               <tr>
                 <th scope="row">Caracteristicas</th>
-                <td>{{ producto.caracteristicas }}</td>
+                <td>{{ producto.descripcion }}</td>
               </tr>
               <tr>
                 <th scope="row">Precio</th>
-                <td>{{ producto.precio }}</td>
+                <td>{{ producto.descripcion }}</td>
               </tr>
               <tr>
                 <th scope="row">Estado</th>
@@ -51,8 +63,8 @@
               </tr>
             </tbody>
           </table>
-
     </div>
+    
 
 </div>
 

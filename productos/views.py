@@ -9,6 +9,7 @@ from .models import Producto,Animal,Categoria
 
 # Vista principal de Productos
 def productosIndex(request):
+    
     #consultar animales y categorias
     animales = Animal.objects.all()
     categorias = Categoria.objects.all()
