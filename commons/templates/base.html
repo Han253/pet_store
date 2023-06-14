@@ -27,19 +27,29 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'productosIndex' %}">Productos</a>
-            </li>        
+            </li>
+            {% for group_for in request.user.groups.all %}
+                {% if group_for.name == 'operador' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'gestionProductos' %}">Gestión</a>
+                </li>
+                {% endif %}
+            {% endfor %}     
+            {% if user.is_superuser %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'gestionProductos' %}">Gestión</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
             </li>
+            {% endif %}
           </ul>
           <form class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 left_bar">
               <li class="nav-item">
                 <a class="nav-link" href="#">Carrito</a>
               </li>
+              {% if user.is_authenticated %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle i" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Mi Cuenta
@@ -47,9 +57,14 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li><a class="dropdown-item" href="#">Perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Salir</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                 </ul>
               </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Log in</a>
+              </li>
+              {% endif %}
             </ul>            
           </form>
         </div>

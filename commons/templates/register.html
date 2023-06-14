@@ -74,41 +74,16 @@ span.psw {
 </style>
 </head>
 <body>
-
-
-
-<div class="contenedor">
-    <h2>Ingreso</h2>
-    <form action="{% url 'login' %}" method="post"> 
-    {% csrf_token %}
-    <div class="container">
-        {% if form.errors %}
-        <p>Nombre de Usuario o Contraseña Incorrectos.</p>
-        {% endif %}
-
-        {% if next %}
-            {% if user.is_authenticated %}
-            <p>Tu cuenta no tiene acceso a esta página, si tienes otra cuenta por favor
-                ingresa tus credenciales.</p>
-            {% else %}
-            <p>Por favor, ingresar credenciales para ver la página.</p>
-            {% endif %}
-        {% endif %}
-
-        <label for="uname"><b>Nombre Usuario</b></label>
-        {{ form.username }}
-
-        <label for="psw"><b>Contraseña</b></label>
-        {{ form.password }}
-            
-        <button type="submit">Ingresar</button>
-        <label>
-        <input type="checkbox" checked="checked" name="remember"> Recuerdame
-        <p>No tienes cuenta? <a href="{% url 'registro' %}">Registrarse</a></p>
-        </label>
+    <div class="contenedor">
+        <h2>Registro</h2>
+        <form  method="POST"> 
+        {% csrf_token %}
+        <div class="container">
+            {{ register_form.as_p }}                    
+            <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+        </form>
+        <p class="text-center">Si ya tienes una cuenta, <a href="{% url 'login' %}">login</a> en ese caso.</p>
     </div>
-
-    </form>
-</div>
 </body>
 </html>
