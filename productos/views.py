@@ -45,7 +45,7 @@ def detalleProducto(request, id):
 def gestionProductos(request):
 
     #Verificar Permisos de Usuarios
-    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+    if not request.user.is_superuser and not request.user.groups.filter(name="operador").exists():
         messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
         return redirect('index')
 
@@ -69,7 +69,7 @@ def gestionProductos(request):
 def crearProducto(request):
 
     #Verificar Permisos de Usuarios
-    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+    if not request.user.is_superuser and not request.user.groups.filter(name="operador").exists():
         messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
         return redirect('index')
     
@@ -98,7 +98,7 @@ def crearProducto(request):
 def editarProducto(request,id):
 
     #Verificar Permisos de Usuarios
-    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+    if not request.user.is_superuser and not request.user.groups.filter(name="operador").exists():
         messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
         return redirect('index')
     
@@ -122,7 +122,7 @@ def editarProducto(request,id):
 def eliminarProducto(request,id):
 
     #Verificar Permisos de Usuarios
-    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+    if not request.user.is_superuser and not request.user.groups.filter(name="operador").exists():
         messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
         return redirect('index')
     
