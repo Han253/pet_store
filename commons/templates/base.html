@@ -28,14 +28,24 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'productosIndex' %}">Productos</a>
             </li>        
+            {% for group_for in request.user.groups.all %}
+                {% if group_for.name == 'operador' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'gestionProductos' %}">Gestión</a>
+                </li>
+                {% endif %}
+            {% endfor %}     
+            {% if user.is_superuser %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'gestionProductos' %}">Gestión</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
             </li>
+            {% endif %}
           </ul>
-          <form class="d-flex">
+          <!--Inicio Actualización para Django 5-->
+          <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 left_bar">
               <li class="nav-item">
                 <a class="nav-link" href="#">Carrito</a>
@@ -46,9 +56,18 @@
                   Mi Cuenta
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="{% url 'pedidos' %}">Mis pedidos</a></li>
+                  <li><a class="dropdown-item" href="#">Mis pedidos</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" 
+                      onClick="document.getElementById('logoutform').submit()">
+                      Logout
+                    </a>
+                  </li>
+                  <form id="logoutform" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden">
+                  </form>
                 </ul>
               </li>
               {% else %}
@@ -57,7 +76,8 @@
               </li>
               {% endif %}
             </ul>            
-          </form>
+          </div>
+          <!--Fin Actualización Django 5-->
         </div>
       </div>
     </nav>

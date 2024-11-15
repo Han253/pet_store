@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator
 from datetime import datetime
+from django.contrib import messages
 
 from .forms import ProductoForm
 from .models import Producto,Animal,Categoria
@@ -42,6 +43,12 @@ def detalleProducto(request, id):
 
 # Vista principal de Gestión de Productos
 def gestionProductos(request):
+
+    #Verificar Permisos de Usuarios
+    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+        messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
+        return redirect('index')
+
     #Consultar productos
     productos_list = Producto.objects.all()
     #Configurar paginación cada 10 productos
@@ -60,6 +67,12 @@ def gestionProductos(request):
 
 # Vista para crear productos
 def crearProducto(request):
+
+    #Verificar Permisos de Usuarios
+    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+        messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
+        return redirect('index')
+    
     #Obtener el template
     template = loader.get_template("crearProducto.html")
     #Generar Formulario
@@ -83,6 +96,13 @@ def crearProducto(request):
 
 # Vista de Productos
 def editarProducto(request,id):
+
+    #Verificar Permisos de Usuarios
+    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+        messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
+        return redirect('index')
+    
+
     #Obtener el template
     template = loader.get_template("editarProducto.html")
     #Buscar Producto
@@ -100,6 +120,13 @@ def editarProducto(request,id):
 
 # Vista de Productos
 def eliminarProducto(request,id):
+
+    #Verificar Permisos de Usuarios
+    if not request.user.is_superuser or not request.user.groups.filter(name="operador").exists():
+        messages.error(request,"Usted no cuenta con permisos para ingresar a esta página")
+        return redirect('index')
+    
+    
     #Obtener el template
     template = loader.get_template("eliminarProducto.html")
     #Buscar el producto
