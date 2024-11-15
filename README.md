@@ -12,4 +12,8 @@ En el estado 2 se avanza hasta la creaci처n del template de index y configuraci�
 
 ## Estado 3
 
-En el estado 3 se crean las vistas y templates entre otras configuraciones para la gesti처n y visualizaci처n de productos
+En el estado 3 se crean las vistas y templates entre otras configuraciones para la gesti처n y visualizaci처n de productos, y el login
+
+## Estado 4
+
+En el estado 4 se hace la gesti처n del carrito de compras
